@@ -1,4 +1,123 @@
 """Somfy Protect Api"""
+#
+# Source:
+# https://api.myfox.io/api/methods
+#
+# V3
+#calendarScenario
+#GET /site/{site_id}/scenario-calendarGet list of calendar scenarios
+#POST /site/{site_id}/scenario-calendarCreate a calendar scenario
+#DELETE /site/{site_id}/scenario-calendar/{scenario_id}Delete a calendar scenario
+#GET /site/{site_id}/scenario-calendar/{scenario_id}Get a calendar scenario
+#PUT /site/{site_id}/scenario-calendar/{scenario_id}Update a calendar scenario
+#coreScenarioShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/scenario-coreGet list of core scenarios
+#GET /site/{site_id}/scenario-core/{trigger}Get a core scenarios
+#PUT /site/{site_id}/scenario-core/{trigger}Update a core scenarios
+#defaultShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/user/{user_id}/token_action/{token}Send a token action to a link between a site and an user
+#PUT /site/{site_id}/user/{user_id}/locationSend location information to a link between a site and an user
+#GET /user/{user_id}Get user information
+#device : Configure your devicesShow/HideList OperationsExpand Operations
+#POST /site/{site_id}/device/{device_id}/calibrationStart calibration of a device
+#POST /site/{site_id}/device/{device_id}/calibration/stopStop calibration of a device
+#DELETE /site/{site_id}/device-install/{model}Stop installation of a device
+#POST /site/{site_id}/device-install/{model}Start installation of a device
+#POST /site/{site_id}/device-install-homekit/{model}Start installation of a device
+#POST /site/{site_id}/device-install/{model}/extendExtend installation duration of a device
+#POST /site/{site_id}/device/{device_id}/resetBuild an encrypted reset payload for the mobile app
+#POST /site/{site_id}/device/{device_id}/reset_wifiReset wifi for a video device
+#DELETE /site/{site_id}/device/{device_id}/uninstallStop uninstall process of a device
+#POST /site/{site_id}/device/{device_id}/uninstallUninstall a device previously installed on this site
+#GET /site/{site_id}/device-compatibleGet list of devices compatible for installation on site
+#GET /site/{site_id}/deviceGet list of installed devices on site
+#GET /site/{site_id}/device/{device_id}Get details of a device
+#PUT /site/{site_id}/device/{device_id}Set details of a device
+#POST /site/{site_id}/device/{device_id}/actionRun an action on a device
+#POST /site/{site_id}/device/{device_id}/sound/{sound_ref}Play a sound on a device
+#POST /site/{site_id}/device/{device_id}/updateAsk firmware update for a device
+#POST /site/{site_id}/device/lorawan/testLoRawan device trame test
+#POST /site/{site_id}/device/backup-gsm/testBackup GSM device test
+#GET /site/{site_id}/device/{device_id}/homekit/qrcodeList of mandatory updates
+#GET /site/{site_id}/mode/{mode_name}Get details of a mode
+#PUT /site/{site_id}/mode/{mode_name}Update HKP mode settings
+#diagnosisShow/HideList OperationsExpand Operations
+#POST /site/{site_id}/device/diagnosisStart the global testing of all devices for a site
+#POST /site/{site_id}/device/diagnosis/extendExtends the global testing of all devices for a site
+#POST /site/{site_id}/device/diagnosis/stopStops the global testing of all devices for a site
+#installerSiteShow/HideList OperationsExpand Operations
+#DELETE /site/{site_id}/installer/{user_id}Delete the link between a site and the installer
+#POST /site/{site_id}/installerAdd a link between a site and the installer
+#invitation : Invite users to your siteShow/HideList OperationsExpand Operations
+#POST /site/{site_id}/invitationSend an invitation for using a site
+#POST /site/invitationAnswer to an invitation
+#invoice : Manage service invoicesShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/invoiceGet invoices list
+#GET /site/{site_id}/invoice/{invoice_id}Get PDF invoice
+#misc : Other API pointsShow/HideList OperationsExpand Operations
+#GET /dictionary/{dictionary_id}/{locale}Get a dictionary file for translations
+#GET /infoGet cloud version and enabled features
+#GET /job/{job_id}Get user job
+#POST /user/{user_id}/feedbackSend feedback
+#mobile : Manage user mobile phonesShow/HideList OperationsExpand Operations
+#POST /user/{user_id}/mobileProvide details of mobile phone for a user
+#DELETE /user/{user_id}/mobile/{phone_id}Remove association between an user and a mobile
+#photo : Upload and download photosShow/HideList OperationsExpand Operations
+#POST /photoUpload a new photo
+#GET /photo/{photo_id}Get a photo uploader by user
+#plan : Manage and subscribe to site plansShow/HideList OperationsExpand Operations
+#POST /site/{site_id}/payment-method/updateGet an URL to update the payment method
+#POST /site/{site_id}/plan/checkoutSend cart and get checkout result
+#POST /site/{site_id}/plan/unsubscribe/immediatelyCancellation imma
+#DELETE /site/{site_id}/plan/unsubscribeRemove scheduled cancellation
+#GET /site/{site_id}/plan/currentGet current plans
+#GET /site/{site_id}/plan/availableGet available plans
+#roomShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/roomList rooms
+#POST /site/{site_id}/roomCreate a new room
+#DELETE /site/{site_id}/room/{room_id}Delete a room
+#PUT /site/{site_id}/room/{room_id}Update a room
+#scenario : Manage your scenariosShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/scenarioGet list of scenarios
+#POST /site/{site_id}/scenarioCreate a new scenario on a specific site
+#DELETE /site/{site_id}/scenario/{scenario_id}Delete a scenario
+#PUT /site/{site_id}/scenario/{scenario_id}Update a scenario
+#site : Manage your siteShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/device/{device_id}/updateList of mandatory updates
+#PUT /site/{site_id}/securityChange security level
+#GET /site/{site_id}/historyGet filtered and sorted site events
+#GET /siteList available sites for the current user
+#POST /siteCreates a new site
+#DELETE /site/{site_id}Delete a site
+#GET /site/{site_id}Get a specific site for the current user
+#PUT /site/{site_id}update a site
+#POST /site/{site_id}/panicPut site in panic mode
+#PUT /site/{site_id}/alarm/stopStop current site alarm
+#PUT /site/{site_id}/domestic-alarm/{alarm_id}/stopStop domestic alarm
+#PUT /site/{site_id}/alarm/trigger_manual_alarmTrigger site alarm
+#PUT /site/{site_id}/privacySet the privacy state
+#GET /site/{site_id}/lorawan/covertestLoRawan Cover test on site
+#user : Manage usersShow/HideList OperationsExpand Operations
+#POST /user/registerCreate a user account
+#POST /user-guestCreates a guest user account
+#PUT /user/{user_id}Update an user
+#POST /user/password/sendSend password change token via email to user
+#PUT /user/secureUpdate a user with a secure token sent by email
+#PUT /user/{user_id}/passwordUpdate user password
+#GET /user/validate-email/{email}Is email valid
+#DELETE /user/gdpr-deleteDelete SP data for the current user
+#userSite : Manage link between a site and an userShow/HideList OperationsExpand Operations
+#GET /site/{site_id}/userRetrieves the list of users of the site
+#DELETE /site/{site_id}/user/{user_id}Delete the link between a site and an user
+#GET /site/{site_id}/user/{user_id}Get the link between a site and an user
+#PUT /site/{site_id}/user/{user_id}Update the link between a site and an user
+#POST /site/{site_id}/user/{user_id}/actionSignal an action to a link between a site and an user
+#
+# TODO:
+#  - application strings (android & ios)
+#  - api v2 v3
+#  - relationship with client id
+#
 import base64
 from json import JSONDecodeError
 from typing import Any, Callable, Dict, List, Optional, Union
@@ -30,6 +149,14 @@ ACTION_LIST = [
     "measure_ambiant_light",
 ]
 
+SOUND_REFS = (
+    'armed',
+    'disarmed',
+    'ok',
+    'intrusion',
+    'siren1s', # 90DB
+    'partial',
+)
 
 class SomfyProtectApi:
     """Somfy Protect Api Class"""
@@ -184,7 +311,7 @@ class SomfyProtectApi:
         response.raise_for_status()
         return response.json()
 
-    def camera_snapshot(self, site_id: str, device_id: str) -> Device:
+    def camera_snapshot(self, site_id: str, device_id: str) -> Dict:
         """Get Camera Snapshot
 
         Args:
@@ -256,6 +383,16 @@ class SomfyProtectApi:
         response.raise_for_status()
         return Device(**response.json())
 
+    # new api
+
+    def device_sound(self, site_id: str, device_id: str, sound_ref: 'str') -> Dict:
+        """
+        """
+        assert(sound_ref in SOUND_REFS)
+        return self.post(f'/v3/site/{site_id}/device/{device_id}/sound/{sound_ref}', json={})
+
+    # mimic in indoor siren, or there only?
+
     def get(self, path: str) -> Response:
         """Fetch an URL from the Somfy Protect API.
 
@@ -289,7 +426,6 @@ class SomfyProtectApi:
         Returns:
             Response: requests Response object
         """
-        print(json)
         return self._request("put", path, json=json)
 
     def request_token(

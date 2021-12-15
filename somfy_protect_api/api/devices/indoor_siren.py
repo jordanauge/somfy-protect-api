@@ -1,10 +1,10 @@
 """Security InDoor Siren"""
-from typing import cast
+from typing import cast, Dict
 
 from somfy_protect_api.api.devices.base import SomfyProtectDevice
 
 
-class InDoorSiren(SomfyProtectDevice):
+class IndoorSiren(SomfyProtectDevice):
     """Class to represent an InDoor Siren."""
 
     def get_rlink_quality(self) -> float:
@@ -22,3 +22,6 @@ class InDoorSiren(SomfyProtectDevice):
             float: Battery Level percentage
         """
         return cast(float, self.get_status("battery_level"))
+
+    def sound(self, sound_ref: str) -> Dict:
+        return self.api.device_sound(self.site.id, self.device.id, sound_ref)
